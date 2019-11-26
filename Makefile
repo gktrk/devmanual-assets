@@ -8,7 +8,7 @@ ASSETS = lunr/lunr.min.js
 all: assets
 
 assets: $(ASSETS)
-	$(INSTALL) --target-directory=$(DESTDIR) -D -p $^
+	$(INSTALL) -t $(DESTDIR) -D -p $^
 clean:
 	$(RM) -f lunr/lunr.min.js
 	$(RM) -rf $(DESTDIR)
