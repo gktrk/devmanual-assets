@@ -1,0 +1,3 @@
+[submodule "lunr"]
+	path = lunr
+	url = git@github.com:olivernn/lunr.js.git
