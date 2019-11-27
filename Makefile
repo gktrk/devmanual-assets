@@ -1,3 +1,5 @@
+all: docker-assets
+
 DESTDIR ?= assets
 INSTALL ?= /usr/bin/install
 RM ?= /usr/bin/rm
@@ -11,7 +13,6 @@ lunr/lunr.min.js: lunr/Makefile
 	$(MAKE) -C $(dir $<) $(notdir $@)
 
 
-all: docker-assets
 docker-assets:
 	docker run --volume "${PWD}:/mnt" \
 	    $(DOCKER_IMAGE) \
@@ -22,4 +23,3 @@ clean:
 	$(RM) -f lunr/lunr.min.js
 	$(RM) -rf $(DESTDIR)
 .PHONY: all assets clean docker-assets
-.DEFAULT_GOAL := all
