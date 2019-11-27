@@ -1,6 +1,7 @@
 DESTDIR ?= assets
 INSTALL ?= /usr/bin/install
 RM ?= /usr/bin/rm
+DOCKER_IMAGE := node:13.2
 
 
 ASSETS = lunr/lunr.min.js
@@ -12,7 +13,9 @@ lunr/lunr.min.js: lunr/Makefile
 
 all: docker-assets
 docker-assets:
-	docker run --volume "${PWD}:/mnt" node make -C /mnt assets
+	docker run --volume "${PWD}:/mnt" \
+	    $(DOCKER_IMAGE) \
+	    make -C /mnt assets
 assets: $(ASSETS)
 	$(INSTALL) -t $(DESTDIR) -D -p $^
 clean:
