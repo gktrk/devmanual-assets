@@ -8,10 +8,11 @@ DOCKER_IMAGE := node:13.2
 
 ASSETS = lunr/lunr.min.js
 
-lunr/lunr.min.js: lunr/Makefile
+lunr/lunr.min.js: lunr/lunr.js
 	$(MAKE) -C $(dir $<) node_modules
 	$(MAKE) -C $(dir $<) $(notdir $@)
-
+lunr/lunr.js: lunr/Makefile
+	$(MAKE) -C $(dir $<) $(notdir $@)
 
 docker-assets:
 	docker run --volume "${PWD}:/mnt" \
